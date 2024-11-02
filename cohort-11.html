@@ -24,6 +24,13 @@
         #calendar * {
             font-family: 'Excalifont', sans-serif;
         }
+
+        #calendar {
+            max-width: 900px; /* or whatever width you want */
+            margin: 0 auto; /* center the calendar */
+            height: 600px; /* Set a fixed height */
+            overflow: hidden; /* Hide overflow */
+        }
         
         /* Enable word wrap for event titles in FullCalendar month view */
         .fc-daygrid-event .fc-event-title {
@@ -45,6 +52,7 @@
 
         body {
             background-color: #FFF6F0;
+            overflow-x: hidden;
         }
 
         :root {
@@ -77,6 +85,7 @@
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
+            contentHeight: 'auto',
             timeZone: 'local', // Adjusts to the user's local timezone
             events: [
                 {
