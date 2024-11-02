@@ -4,69 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timezone-Aware Calendar</title>
-    
-    <!-- FullCalendar CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/fullcalendar.min.css" rel="stylesheet">
-    <!-- FullCalendar JavaScript -->
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
-
-    <!-- Custom Font CSS -->
-    <style>
-        /* Import custom font */
-        @font-face {
-            font-family: 'Excalifont';
-            src: url('assets/Excalifont-Regular.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-        
-        /* Apply font to FullCalendar */
-        #calendar * {
-            font-family: 'Excalifont', sans-serif;
-        }
-    </style>
 </head>
 <body>
-
-<div id="calendar"></div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            timeZone: 'local', // Adjusts to the user's local timezone
-            events: [
-                {
-                    title: 'Cohort 11 - Session 1',
-                    start: '2024-11-16T16:00:00Z', // UCT time
-                    end: '2024-11-16T17:30:00Z'
-                },
-                {
-                    title: 'Cohort 11 - Session 2',
-                    start: '2024-11-23T16:00:00Z',
-                    end: '2024-11-23T17:30:00Z'
-                },
-                {
-                    title: 'Cohort 11 - Session 3',
-                    start: '2024-11-30T16:00:00Z',
-                    end: '2024-11-30T17:30:00Z'
-                },
-                {
-                    title: 'Cohort 11 - Session 4',
-                    start: '2024-12-07T16:00:00Z',
-                    end: '2024-12-07T17:30:00Z'
-                },
-                {
-                    title: 'Cohort 11 - Session 5',
-                    start: '2024-12-14T16:00:00Z',
-                    end: '2024-12-14T17:30:00Z'
-                }
-            ]
-        });
-        calendar.render();
-    });
-</script>
+  <a href="cohort-11.html">Cohort 11</a>
+  <a href="office-hours.html">Office Hours</a>
 
 </body>
 </html>

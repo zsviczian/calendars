@@ -46,7 +46,14 @@ body {
   --fc-today-bg-color: #E6D2C1;
   --fc-button-bg-color: #755941;
   --fc-button-border-color: #755941;
+  --fc-event-bg-color: #006666;
+  --fc-event-border-color: #38ABAB;
 }
+
+.fc-event-title {
+  color: #FFF6F0;
+}
+
 #calendar-title {
   text-align: center;
   font-size: 24px;
