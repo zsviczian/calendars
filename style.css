@@ -71,8 +71,7 @@ body {
 #info-message {
   text-align: center; /* Center the message */
   margin-top: 10px; /* Space above the message */
-  font-size: 0.8em; /* Slightly larger font */
-  color: #333; /* Color of the text */
+  font-size: 1em; /* Slightly larger font */
 }
 
 /* Target the FullCalendar header toolbar */
