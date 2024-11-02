@@ -74,10 +74,14 @@
               }
           });
           calendar.render();
+          let localTimeZone = luxon.DateTime.local().zoneName;
+          let timeZoneMessage = `Times are displayed in "${localTimeZone}" timezone in 24h format.`;
+          document.getElementById('info-message').innerHTML = `${timeZoneMessage}<br><br>
+              Sessions are 1.5 hours long.`;
       });
   </script>
   
-  <div id="info-message">Sessions are 1.5 hours long. Time is displayed in 24h format.</div>
+  <div id="info-message"></div>
   
   </body>
   </html>
