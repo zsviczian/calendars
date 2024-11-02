@@ -26,7 +26,7 @@
               displayEventTime: true,
               events: [
                   {
-                      title: "COHORT-MAIN",
+                      title: "Main",
                       rrule: {
                           freq: "weekly",
                           interval: 1,
@@ -36,7 +36,7 @@
                       }
                   },
                   {
-                      title: "COHORT-APAC",
+                      title: "Catchup",
                       rrule: {
                           freq: "weekly",
                           interval: 1,
@@ -52,23 +52,28 @@
             },
             eventDidMount: function(info) {
                 if (info.event.start && info.el) {
-                  let title = "";
                   const year = info.event.start.getFullYear();
                   const month = info.event.start.getMonth()+1;
                   const day = info.event.start.getDate();
-
-                  if(info.event.title === "COHORT-MAIN") {
-                    title = "Main<br>" + luxon.DateTime.fromObject(
-                      {year, month, day, hour: 17, minute: 0 },
-                      { zone: 'Europe/Budapest' }
-                    ).setZone(luxon.DateTime.local().zoneName).toFormat('HH:mm');
-                  } else {
-                    title = "Catchup<br>" + luxon.DateTime.fromObject(
-                      { year, month, day, hour: 9, minute: 0 },
-                      { zone: 'Europe/Budapest' }
-                    ).setZone(luxon.DateTime.local().zoneName).toFormat('HH:mm');
-                  }
+                  let hour = 0;
+                  let minute = 0;
                   
+                  if(info.event.title === "Main") {
+                    hour = 17;
+                    minute = 0;
+                  } else {
+                    hour = 9;
+                    minute = 0;
+                  }
+                  const baseDate = luxon.DateTime.fromObject(
+                    { year, month, day, hour, minute },
+                    { zone: 'Europe/Budapest' }
+                  );
+                  const localDate = baseDate.setZone(luxon.DateTime.local().zoneName);
+                  const dayDifference = localDate.ordinal - baseDate.ordinal;
+                  const title = info.event.title + "<br>" + localDate.toFormat('HH:mm') +
+                    (dayDifference === 0 ? "" : ` (${dayDifference > 0 ? "+" : ""}${dayDifference}d)`);
+
                   info.el.innerHTML=`<div class="fc-event-title fc-sticky">${title}</div>`;
                 }
             },
