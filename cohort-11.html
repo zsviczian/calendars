@@ -3,85 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timezone-Aware Calendar</title>
-    
-    <!-- FullCalendar CSS -->
+    <title>Visual Thinking Workshop Timezone-Aware Calendar</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/fullcalendar.min.css" rel="stylesheet">
-    <!-- FullCalendar JavaScript -->
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
-
-    <!-- Custom Font CSS -->
-    <style>
-        /* Import custom font */
-        @font-face {
-            font-family: 'Excalifont';
-            src: url('assets/Excalifont-Regular.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-        
-        /* Apply font to FullCalendar */
-        #calendar * {
-            font-family: 'Excalifont', sans-serif;
-        }
-
-        #calendar {
-            max-width: 900px; /* or whatever width you want */
-            margin: 0 auto; /* center the calendar */
-            max-height: 900px; /* Set a fixed height */
-            overflow: hidden; /* Hide overflow */
-        }
-        
-        /* Enable word wrap for event titles in FullCalendar month view */
-        .fc-daygrid-event .fc-event-title {
-            white-space: normal;   /* Allow the title to wrap */
-            overflow: visible;     /* Display all text */
-            display: block;        /* Ensure each line wraps properly */
-            text-overflow: clip;   /* Prevent text truncation */
-        }
-
-        /* Optionally, adjust line height and padding for better readability */
-        .fc-daygrid-event {
-            line-height: 1.2em;
-            padding: 2px 4px;
-        }
-
-        body, #calendar-title {
-            font-family: 'Excalifont', sans-serif;
-        }
-
-        body {
-            background-color: #FFF6F0;
-            overflow-x: hidden;
-        }
-
-        :root {
-            --fc-event-border-color: #009999;
-            --fc-today-bg-color: #E6D2C1;
-            --fc-button-bg-color: #755941;
-            --fc-button-border-color: #755941;
-        }
-        #calendar-title {
-            text-align: center;
-            font-size: 24px;
-            margin: 20px 0;
-            font-weight: bold;
-        }
-
-        /* Ensure title is visible and styled correctly */
-        .fc-toolbar-title {
-            text-align: center; /* Center title */
-            font-size: 20px;    /* Adjust size */
-            margin: 0;          /* Remove margin */
-        }
-
-        #info-message {
-            text-align: center; /* Center the message */
-            margin-top: 10px; /* Space above the message */
-            font-size: 0.8em; /* Slightly larger font */
-            color: #333; /* Color of the text */
-        }
-    </style>
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -133,8 +58,7 @@
             },
             datesSet: function(dateInfo) {
                 var titleElement = document.querySelectorAll('.fc-toolbar-chunk')[1];
-                titleElement.style.fontSize = "2em";
-                titleElement.innerText = `Cohort 11 Sessions`;
+                titleElement.innerHTML = `<h2 class="fc-toolbar-title calendar-title" id="fc-dom-1">Cohort 11</h2>`;
             }
         });
         calendar.render();
