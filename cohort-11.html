@@ -24,6 +24,48 @@
         #calendar * {
             font-family: 'Excalifont', sans-serif;
         }
+        
+        /* Enable word wrap for event titles in FullCalendar month view */
+        .fc-daygrid-event .fc-event-title {
+            white-space: normal;   /* Allow the title to wrap */
+            overflow: visible;     /* Display all text */
+            display: block;        /* Ensure each line wraps properly */
+            text-overflow: clip;   /* Prevent text truncation */
+        }
+
+        /* Optionally, adjust line height and padding for better readability */
+        .fc-daygrid-event {
+            line-height: 1.2em;
+            padding: 2px 4px;
+        }
+
+        body, #calendar-title {
+            font-family: 'Excalifont', sans-serif;
+        }
+
+        body {
+            background-color: #FFF6F0;
+        }
+
+        :root {
+            --fc-event-border-color: #009999;
+            --fc-today-bg-color: #E6D2C1;
+            --fc-button-bg-color: #755941;
+            --fc-button-border-color: #755941;
+        }
+        #calendar-title {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        /* Ensure title is visible and styled correctly */
+        .fc-toolbar-title {
+            text-align: center; /* Center title */
+            font-size: 20px;    /* Adjust size */
+            margin: 0;          /* Remove margin */
+        }
     </style>
 </head>
 <body>
@@ -38,31 +80,46 @@
             timeZone: 'local', // Adjusts to the user's local timezone
             events: [
                 {
-                    title: 'Cohort 11 - Session 1',
+                    title: 'Session 1',
                     start: '2024-11-16T16:00:00Z', // UCT time
                     end: '2024-11-16T17:30:00Z'
                 },
                 {
-                    title: 'Cohort 11 - Session 2',
+                    title: 'Session 2',
                     start: '2024-11-23T16:00:00Z',
                     end: '2024-11-23T17:30:00Z'
                 },
                 {
-                    title: 'Cohort 11 - Session 3',
+                    title: 'Session 3',
                     start: '2024-11-30T16:00:00Z',
                     end: '2024-11-30T17:30:00Z'
                 },
                 {
-                    title: 'Cohort 11 - Session 4',
+                    title: 'Session 4',
                     start: '2024-12-07T16:00:00Z',
                     end: '2024-12-07T17:30:00Z'
                 },
                 {
-                    title: 'Cohort 11 - Session 5',
+                    title: 'Session 5',
                     start: '2024-12-14T16:00:00Z',
                     end: '2024-12-14T17:30:00Z'
                 }
-            ]
+            ],
+            validRange: { // Restrict the displayed dates
+                start: '2024-11-01',
+                end: '2024-12-15'
+            },
+            eventDidMount: function(info) {
+                // Format the start and end times for the tooltip
+                var startTime = info.event.start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                var endTime = info.event.end.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                info.el.setAttribute('title', startTime + ' - ' + endTime); // Tooltip text
+            },
+            datesSet: function(dateInfo) {
+                var titleElement = document.querySelectorAll('.fc-toolbar-chunk')[1];
+                titleElement.style.fontSize = "2em";
+                titleElement.innerText = `Cohort 11 Sessions`;
+            }
         });
         calendar.render();
     });
