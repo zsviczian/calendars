@@ -28,7 +28,7 @@
         #calendar {
             max-width: 900px; /* or whatever width you want */
             margin: 0 auto; /* center the calendar */
-            height: 600px; /* Set a fixed height */
+            max-height: 900px; /* Set a fixed height */
             overflow: hidden; /* Hide overflow */
         }
         
@@ -73,6 +73,13 @@
             text-align: center; /* Center title */
             font-size: 20px;    /* Adjust size */
             margin: 0;          /* Remove margin */
+        }
+
+        #info-message {
+            text-align: center; /* Center the message */
+            margin-top: 10px; /* Space above the message */
+            font-size: 0.8em; /* Slightly larger font */
+            color: #333; /* Color of the text */
         }
     </style>
 </head>
@@ -133,6 +140,8 @@
         calendar.render();
     });
 </script>
+
+<div id="info-message">Hover events to see the details.</div>
 
 </body>
 </html>
