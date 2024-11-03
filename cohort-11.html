@@ -83,7 +83,8 @@
         });
         calendar.render();
         let localTimeZone = luxon.DateTime.local().zoneName;
-        let timeZoneMessage = `Times are displayed in "${localTimeZone}" timezone in 24h format.`;
+        let timeZoneMessage = `Times are displayed in "${
+          localTimeZone}" timezone in 24h format.<br>If (+1d) or (-1d) is displayed, it means the event is on the next or previous day in your timezone.`;
         document.getElementById('info-message').innerHTML = `${timeZoneMessage}<br><br>
             Main sessions are 1.5 hours long and recorded.<br>
             Catchup sessions are 45 minutes long and assume participants have viewed the recording.`;
