@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Thinking Workshop Timezone-Aware Calendar</title>
+    <script src='assets/rrule.min.js'></script>
+    <script src='assets/fc.index.global.min.js'></script>   
+    <!-- the rrule-to-fullcalendar connector. must go AFTER the rrule lib -->
+    <script src='assets/rrule.connector.min.js'></script>
+    <script src='assets/luxon.min.js'></script>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="calendar"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+              contentHeight: 'auto',
+              timeZone: 'local', 
+              displayEventTime: true,
+              events: [
+                  {
+                      title: "Main",
+                      rrule: {
+                          freq: "weekly",
+                          interval: 1,
+                          byweekday: "SA",
+                          count: 5,
+                          dtstart: new Date(Date.UTC(2025, 1, 25, 16, 0, 0))
+                      }
+                  },
+                  {
+                      title: "Catchup",
+                      rrule: {
+                          freq: "weekly",
+                          interval: 1,
+                          byweekday: "SU",
+                          count: 5,
+                          dtstart: new Date(Date.UTC(2025, 1, 26, 8, 0, 0))
+                      }
+                  },
+              ],
+            validRange: {
+                start: '2025-01-11',
+                end: '2024-02-23'
+            },
+            eventDidMount: function(info) {
+                if (info.event.start && info.el) {
+                  const year = info.event.start.getFullYear();
+                  const month = info.event.start.getMonth()+1;
+                  const day = info.event.start.getDate();
+                  let hour = 0;
+                  let minute = 0;
+                  
+                  if(info.event.title === "Main") {
+                    hour = 17;
+                    minute = 0;
+                  } else {
+                    hour = 9;
+                    minute = 0;
+                  }
+                  const baseDate = luxon.DateTime.fromObject(
+                    { year, month, day, hour, minute },
+                    { zone: 'Europe/Budapest' }
+                  );
+                  const localDate = baseDate.setZone(luxon.DateTime.local().zoneName);
+                  const dayDifference = localDate.ordinal - baseDate.ordinal;
+                  const title = info.event.title + "<br>" + localDate.toFormat('HH:mm') +
+                    (dayDifference === 0 ? "" : ` (${dayDifference > 0 ? "+" : ""}${dayDifference}d)`);
+
+                  info.el.innerHTML=`<div class="fc-event-title fc-sticky">${title}</div>`;
+                }
+            },
+            datesSet: function(dateInfo) {
+                var titleElement = document.querySelectorAll('.fc-toolbar-chunk')[1];
+                titleElement.innerHTML = `<h2 class="fc-toolbar-title calendar-title" id="fc-dom-1">Cohort 12</h2>`;
+            }
+        });
+        calendar.render();
+        let localTimeZone = luxon.DateTime.local().zoneName;
+        let timeZoneMessage = `Times are displayed in "${
+          localTimeZone}" timezone in 24h format.<br>If (+1d) or (-1d) is displayed, it means the event is on the next or previous day in your timezone.`;
+        document.getElementById('info-message').innerHTML = `${timeZoneMessage}<br><br>
+            Main sessions are 1.5 hours long and recorded.<br>
+            Catchup sessions are 45 minutes long and assume participants have viewed the recording.`;
+    });
+</script>
+
+<div id="info-message">Page did not load correctly!</div>
+
+</body>
+</html>
