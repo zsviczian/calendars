@@ -76,7 +76,7 @@
                           freq: "weekly",
                           interval: 2,
                           byweekday: "TH",
-                          count: 3,
+                          count: 4,
                           dtstart: addHours(addDays(START,-9),1.5)
                       }
                   },
@@ -86,7 +86,7 @@
                           freq: "weekly",
                           interval: 2,
                           byweekday: "FR",
-                          count: 3,
+                          count: 4,
                           dtstart: addHours(addDays(START,-2),15)
                       }
                   },
@@ -113,7 +113,7 @@
               ],
             validRange: {
                 start: dateToString(addDays(START,-14)),
-                end: dateToString(addDays(START,36))
+                end: dateToString(addDays(START,48))
             },
             eventDidMount: function(info) {
                 if (info.event.start && info.el) {
