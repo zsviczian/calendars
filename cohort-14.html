@@ -10,6 +10,13 @@
     <script src='assets/rrule.connector.min.js'></script>
     <script src='assets/luxon.min.js'></script>
     <link href="style.css" rel="stylesheet">
+    <style>
+        .fc-event[data-title*="Office Hours"] {
+            background-color: #38ABAB !important;
+            color: black !important;
+            border-color: #38ABAB !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -117,6 +124,9 @@
             },
             eventDidMount: function(info) {
                 if (info.event.start && info.el) {
+                  // Add data attribute for CSS targeting
+                  info.el.setAttribute('data-title', info.event.title);
+                  
                   const year = info.event.start.getFullYear();
                   const month = info.event.start.getMonth()+1;
                   const day = info.event.start.getDate();
