@@ -71,6 +71,26 @@
                       }
                   },
                   {
+                      title: "Office Hours (US)",
+                      rrule: {
+                          freq: "weekly",
+                          interval: 2,
+                          byweekday: "TH",
+                          count: 3,
+                          dtstart: addHours(addDays(START,-9),1.5)
+                      }
+                  },
+                  {
+                      title: "Office Hours (APAC)",
+                      rrule: {
+                          freq: "weekly",
+                          interval: 2,
+                          byweekday: "FR",
+                          count: 3,
+                          dtstart: addHours(addDays(START,-2),15)
+                      }
+                  },
+                  {
                       title: "Session (US)",
                       rrule: {
                           freq: "weekly",
@@ -104,6 +124,14 @@
                   let minute = 0;
                   
                   switch(info.event.title) {
+                    case "Office Hours (US)":
+                      hour = 18;
+                      minute = 30;
+                      break;
+                    case "Office Hours (APAC)":
+                      hour = 8;
+                      minute = 0;
+                      break;
                     case "Orientation (US)":
                       hour = 17;
                       minute = 0;
