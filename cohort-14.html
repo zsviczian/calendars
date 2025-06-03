@@ -16,7 +16,7 @@
 <div id="calendar"></div>
 
 <script>
-    const BASE = "2025-08-30";
+    const SESSION_1 = "2025-08-30";
     const TITLE = "Cohort 14";
 
     function addDays(date, days) {
@@ -38,9 +38,9 @@
         return `${year}-${month}-${day}`;
     }
 
-    const year = parseInt(BASE.split('-')[0]);
-    const month = parseInt(BASE.split('-')[1])-1;
-    const day = parseInt(BASE.split('-')[2]);
+    const year = parseInt(SESSION_1.split('-')[0]);
+    const month = parseInt(SESSION_1.split('-')[1])-1;
+    const day = parseInt(SESSION_1.split('-')[2]);
     const START = new Date(Date.UTC(year, month, day, 16, 0, 0));
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -113,7 +113,7 @@
               ],
             validRange: {
                 start: dateToString(addDays(START,-14)),
-                end: dateToString(addDays(START,48))
+                end: dateToString(addDays(START,42))
             },
             eventDidMount: function(info) {
                 if (info.event.start && info.el) {
